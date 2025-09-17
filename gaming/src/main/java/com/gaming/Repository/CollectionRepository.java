@@ -1,5 +1,5 @@
-package com.gaming.gaming.Repository;
-import com.gaming.gaming.Model.CollectionRecord;
+package com.gaming.Repository;
+import com.gaming.Model.CollectionRecord;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

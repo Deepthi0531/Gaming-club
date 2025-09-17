@@ -1,9 +1,9 @@
-package com.gaming.gaming.Controller;
+package com.gaming.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import com.gaming.gaming.Model.Transaction;
-import com.gaming.gaming.Repository.TransactionRepository;
+import com.gaming.Model.Transaction;
+import com.gaming.Repository.TransactionRepository;
 
 @RestController
 @RequestMapping("/api/transactions")

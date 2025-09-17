@@ -1,8 +1,8 @@
-package com.gaming.gaming.Repository;
+package com.gaming.Repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-import com.gaming.gaming.Model.AdminUser;
+import com.gaming.Model.AdminUser;
 
 @Repository
 public interface AdminUserRepository extends MongoRepository<AdminUser, String> {

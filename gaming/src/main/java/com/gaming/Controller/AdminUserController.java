@@ -1,11 +1,11 @@
-package com.gaming.gaming.Controller;
+package com.gaming.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import com.gaming.gaming.Model.AdminUser;
-import com.gaming.gaming.Repository.AdminUserRepository;
+import com.gaming.Model.AdminUser;
+import com.gaming.Repository.AdminUserRepository;
 
 @RestController
 @RequestMapping("/api/admin_users")

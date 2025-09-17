@@ -1,9 +1,15 @@
-package com.gaming.gaming.Controller;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+package com.gaming.Controller;
 import java.util.List;
-import com.gaming.gaming.Repository.RechargeRepository;
-import com.gaming.gaming.Model.Recharge;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.gaming.Model.Recharge;
+import com.gaming.Repository.RechargeRepository;
 
 @RestController
 @RequestMapping("/api/recharges")

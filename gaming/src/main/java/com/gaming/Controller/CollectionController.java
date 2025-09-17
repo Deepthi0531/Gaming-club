@@ -1,10 +1,10 @@
-package com.gaming.gaming.Controller;
+package com.gaming.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import com.gaming.gaming.Model.CollectionRecord;
-import com.gaming.gaming.Repository.CollectionRepository;
+import com.gaming.Model.CollectionRecord;
+import com.gaming.Repository.CollectionRepository;
 
 @RestController
 @RequestMapping("/api/collections")

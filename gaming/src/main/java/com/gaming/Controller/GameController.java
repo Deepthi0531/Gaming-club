@@ -1,10 +1,10 @@
-package com.gaming.gaming.Controller;
+package com.gaming.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import com.gaming.gaming.Repository.GameRepository;
-import com.gaming.gaming.Model.Game;
+import com.gaming.Repository.GameRepository;
+import com.gaming.Model.Game;
 
 @RestController
 @RequestMapping("/api/games")
