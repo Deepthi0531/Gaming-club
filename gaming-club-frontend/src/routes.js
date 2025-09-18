@@ -7,6 +7,7 @@ import MemberSearchPage from './pages/MemberSearchPage';
 import MemberPage from './pages/MemberPage';
 import AddGamePage from './pages/AddGamePage';
 import CollectionsPage from './pages/CollectionsPage';
+import RechargePage from './pages/RechargePage';
 
 const AppRoutes = () => {
     // A simple check for a logged-in user.
@@ -22,6 +23,7 @@ const AppRoutes = () => {
                 <Route path="/member/:phone" element={isAuth ? <MemberPage /> : <Navigate to="/login" />} />
                 <Route path="/add-game" element={isAuth ? <AddGamePage /> : <Navigate to="/login" />} />
                 <Route path="/collections" element={isAuth ? <CollectionsPage /> : <Navigate to="/login" />} />
+                <Route path="/recharge/:phone" element={isAuth ? <RechargePage /> : <Navigate to="/login" />} />
                 <Route path="*" element={<Navigate to={isAuth ? "/member-search" : "/signup"} />} />
             </Routes>
         </Router>
