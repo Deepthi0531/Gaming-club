@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Map;
 import java.util.Optional;
 
@@ -24,11 +24,9 @@ public class RechargeController {
     @Autowired
     private RechargeRepository rechargeRepository;
 
-    // DTO to capture the recharge request from the frontend
     public static class RechargeRequest {
         private String phone;
         private double amount;
-        // Getters and Setters
         public String getPhone() { return phone; }
         public void setPhone(String phone) { this.phone = phone; }
         public double getAmount() { return amount; }
@@ -43,20 +41,15 @@ public class RechargeController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Map.of("message", "Member not found with this phone number."));
         }
-
-        // Add the amount to the member's balance
         Member member = memberOptional.get();
         member.setBalance(member.getBalance() + request.getAmount());
         Member updatedMember = memberRepository.save(member);
 
-        // Create a new record for this recharge transaction
         Recharge recharge = new Recharge();
         recharge.setMemberId(updatedMember.getId());
         recharge.setAmount(request.getAmount());
-        recharge.setTimestamp(LocalDateTime.now());
+        recharge.setTimestamp(Instant.now());
         rechargeRepository.save(recharge);
-        
-        // This new recharge record will now automatically be included in the daily collections total.
 
         return ResponseEntity.ok(updatedMember);
     }

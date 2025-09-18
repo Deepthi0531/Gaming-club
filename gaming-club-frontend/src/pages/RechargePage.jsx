@@ -3,10 +3,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import memberApi from '../api/member';
-import rechargeApi from '../api/recharge'; // Import the new recharge api
+import rechargeApi from '../api/recharge';
 
 const RechargePage = () => {
-    const { phone } = useParams(); // Get phone number from the URL
+    const { phone } = useParams();
     const navigate = useNavigate();
     const [member, setMember] = useState(null);
     const [amount, setAmount] = useState('');

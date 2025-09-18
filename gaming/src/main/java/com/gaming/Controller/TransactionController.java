@@ -17,9 +17,4 @@ public class TransactionController {
     public List<Transaction> getAllTransactions() {
         return transactionRepository.findAll();
     }
-
-    @PostMapping
-    public Transaction createTransaction(@RequestBody Transaction transaction) {
-        return transactionRepository.save(transaction);
-    }
 }

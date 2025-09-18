@@ -2,7 +2,7 @@ package com.gaming.Model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import java.time.LocalDateTime; // <-- Make sure to import this
+import java.time.Instant;
 
 @Document(collection = "recharges")
 public class Recharge {
@@ -13,7 +13,7 @@ public class Recharge {
     
     // --- ADD THESE TWO FIELDS ---
     private String memberId;
-    private LocalDateTime timestamp;
+    private Instant timestamp;
 
     // --- Getters and setters ---
     public String getId() { return id; }
@@ -29,11 +29,11 @@ public class Recharge {
         this.memberId = memberId;
     }
 
-    public LocalDateTime getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
     }
 }

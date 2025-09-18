@@ -1,10 +1,25 @@
 package com.gaming.Controller;
 
+import com.gaming.Model.Member;
+import com.gaming.Model.Recharge;
+import com.gaming.Model.Transaction;
+import com.gaming.Model.dto.CollectionRecordDto; // Use the DTO
+import com.gaming.Repository.MemberRepository;
+import com.gaming.Repository.RechargeRepository;
+import com.gaming.Repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.HashMap;
 import java.util.List;
-import com.gaming.Model.CollectionRecord;
-import com.gaming.Repository.CollectionRepository;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/collections")
@@ -12,15 +27,44 @@ import com.gaming.Repository.CollectionRepository;
 public class CollectionController {
 
     @Autowired
-    private CollectionRepository collectionRepository;
+    private RechargeRepository rechargeRepository;
+    
+    @Autowired
+    private TransactionRepository transactionRepository;
+    
+    @Autowired
+    private MemberRepository memberRepository;
 
     @GetMapping
-    public List<CollectionRecord> getAllCollections() {
-        return collectionRepository.findAll();
-    }
+    public ResponseEntity<?> getCollectionsByDate(
+        @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
+    ) {
+        ZoneId systemTimeZone = ZoneId.systemDefault();
+        Instant startInstant = date.atStartOfDay(systemTimeZone).toInstant();
+        Instant endInstant = date.plusDays(1).atStartOfDay(systemTimeZone).toInstant();
 
-    @PostMapping
-    public CollectionRecord createCollection(@RequestBody CollectionRecord collection) {
-        return collectionRepository.save(collection);
+        List<Recharge> recharges = rechargeRepository.findByTimestampBetween(startInstant, endInstant);
+        List<Transaction> transactions = transactionRepository.findByTimestampBetween(startInstant, endInstant);
+
+        double rechargeTotal = recharges.stream().mapToDouble(Recharge::getAmount).sum();
+        double transactionTotal = transactions.stream().mapToDouble(Transaction::getAmount).sum();
+        double grandTotal = rechargeTotal + transactionTotal;
+
+        List<String> memberIds = recharges.stream().map(Recharge::getMemberId).distinct().collect(Collectors.toList());
+        Map<String, String> memberIdToNameMap = memberRepository.findAllById(memberIds).stream()
+            .collect(Collectors.toMap(Member::getId, Member::getName));
+            
+        List<CollectionRecordDto> records = recharges.stream()
+            .map(recharge -> new CollectionRecordDto(
+                memberIdToNameMap.getOrDefault(recharge.getMemberId(), "Unknown Member"),
+                recharge.getAmount()
+            ))
+            .collect(Collectors.toList());
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("records", records);
+        response.put("total", grandTotal);
+
+        return ResponseEntity.ok(response);
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -32,12 +33,10 @@ public class MemberController {
     @Autowired
     private GameRepository gameRepository;
 
-    // DTO for creating a new member
     public static class MemberCreationRequest {
         private String name;
         private String phone;
         private double initialDeposit;
-        // Getters and Setters
         public String getName() { return name; }
         public void setName(String name) { this.name = name; }
         public String getPhone() { return phone; }
@@ -46,16 +45,11 @@ public class MemberController {
         public void setInitialDeposit(double initialDeposit) { this.initialDeposit = initialDeposit; }
     }
 
-    // DTO for the 'play game' request
     public static class PlayGameRequest {
         private String gameId;
-        // Getter and Setter
         public String getGameId() { return gameId; }
         public void setGameId(String gameId) { this.gameId = gameId; }
     }
-
-    // --- POST /api/members ---
-    // Creates a new member
     @PostMapping
     public ResponseEntity<?> createMembership(@RequestBody MemberCreationRequest request) {
         if (memberRepository.findByPhone(request.getPhone()).isPresent()) {
@@ -72,14 +66,11 @@ public class MemberController {
         Recharge initialRecharge = new Recharge();
         initialRecharge.setMemberId(savedMember.getId());
         initialRecharge.setAmount(request.getInitialDeposit());
-        initialRecharge.setTimestamp(LocalDateTime.now());
+        initialRecharge.setTimestamp(Instant.now());
         rechargeRepository.save(initialRecharge);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedMember);
     }
-
-    // --- GET /api/members/{phone} ---
-    // Finds a member by their phone number
     @GetMapping("/{phone}")
     public ResponseEntity<?> getMemberByPhone(@PathVariable String phone) {
         Optional<Member> memberOptional = memberRepository.findByPhone(phone);
@@ -90,9 +81,6 @@ public class MemberController {
                     .body(Map.of("message", "Member not found with this phone number."));
         }
     }
-
-    // --- GET /api/members/{phone}/recharges ---
-    // Gets the recharge history for a specific member
     @GetMapping("/{phone}/recharges")
     public ResponseEntity<?> getRechargeHistory(@PathVariable String phone) {
         Optional<Member> memberOptional = memberRepository.findByPhone(phone);
@@ -103,9 +91,6 @@ public class MemberController {
         List<Recharge> recharges = rechargeRepository.findByMemberIdOrderByTimestampDesc(memberOptional.get().getId());
         return ResponseEntity.ok(recharges);
     }
-
-    // --- GET /api/members/{phone}/transactions ---
-    // Gets the played games history for a specific member
     @GetMapping("/{phone}/transactions")
     public ResponseEntity<?> getPlayedGamesHistory(@PathVariable String phone) {
         Optional<Member> memberOptional = memberRepository.findByPhone(phone);
@@ -116,9 +101,6 @@ public class MemberController {
         List<Transaction> transactions = transactionRepository.findByMemberIdOrderByTimestampDesc(memberOptional.get().getId());
         return ResponseEntity.ok(transactions);
     }
-
-    // --- POST /api/members/{phone}/play ---
-    // Handles the logic when a member plays a game
     @PostMapping("/{phone}/play")
     public ResponseEntity<?> playGame(@PathVariable String phone, @RequestBody PlayGameRequest request) {
         Optional<Member> memberOptional = memberRepository.findByPhone(phone);
@@ -138,16 +120,14 @@ public class MemberController {
             return ResponseEntity.status(HttpStatus.PAYMENT_REQUIRED).body(Map.of("message", "Insufficient balance."));
         }
 
-        // Deduct balance and save member
         member.setBalance(member.getBalance() - game.getPrice());
         memberRepository.save(member);
 
-        // Create transaction record
         Transaction transaction = new Transaction();
         transaction.setMemberId(member.getId());
         transaction.setGameId(game.getId());
         transaction.setAmount(game.getPrice());
-        transaction.setTimestamp(LocalDateTime.now());
+        transaction.setTimestamp(Instant.now());
         transactionRepository.save(transaction);
 
         return ResponseEntity.ok(Map.of("message", "Game played successfully.", "newBalance", member.getBalance()));
