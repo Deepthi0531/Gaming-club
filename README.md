@@ -34,7 +34,7 @@ gaming/
 Getting Started
 
 1. Clone the Repository
-git clone https://github.com/yourusername/gaming-club-app.git
+git clone https://github.com/Deepthi0531/Gaming-club
 cd gaming-club-frontend
 
 2. Frontend Setup (React)
