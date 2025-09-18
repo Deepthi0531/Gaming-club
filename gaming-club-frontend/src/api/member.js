@@ -1,26 +1,26 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:8080/api/members';
+import apiClient from './apiConfig';
 
 const findMemberByPhone = (phone) => {
-    return axios.get(`${API_URL}/${phone}`);
+    return apiClient.get(`/members/${phone}`);
 };
 
 const getRechargeHistory = (phone) => {
-    return axios.get(`${API_URL}/${phone}/recharges`);
+    return apiClient.get(`/members/${phone}/recharges`);
 };
 
 const getPlayedGamesHistory = (phone) => {
-    return axios.get(`${API_URL}/${phone}/transactions`);
+    return apiClient.get(`/members/${phone}/transactions`);
 };
 
 const playGame = (phone, gameId) => {
-    return axios.post(`${API_URL}/${phone}/play`, { gameId });
+    return apiClient.post(`/members/${phone}/play`, { gameId });
 }
 
-export default {
+const memberService = {
     findMemberByPhone,
     getRechargeHistory,
     getPlayedGamesHistory,
     playGame,
 };
+
+export default memberService;

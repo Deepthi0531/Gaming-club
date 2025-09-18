@@ -1,9 +1,15 @@
 package com.gaming.Repository;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
-import com.gaming.Model.Recharge;
 
-@Repository
+import com.gaming.Model.Recharge;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import java.time.LocalDateTime;
+import java.util.List;
+
 public interface RechargeRepository extends MongoRepository<Recharge, String> {
-    // Additional query methods as needed
+
+    List<Recharge> findByTimestampBetween(LocalDateTime start, LocalDateTime end);
+
+    // --- ADD THIS METHOD ---
+    // Finds all recharges for a given memberId, sorted with the most recent first.
+    List<Recharge> findByMemberIdOrderByTimestampDesc(String memberId);
 }

@@ -8,6 +8,7 @@ import com.gaming.Repository.CollectionRepository;
 
 @RestController
 @RequestMapping("/api/collections")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CollectionController {
 
     @Autowired

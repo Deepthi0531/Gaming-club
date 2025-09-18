@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import authApi from '../api/auth';
 import Footer from '../components/Footer';
 
@@ -7,16 +6,14 @@ const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         try {
             const response = await authApi.login(username, password);
-            // Assuming the backend returns a user object with a token
             localStorage.setItem('user', JSON.stringify(response.data));
-            navigate('/member-search');
+            window.location.href = '/collections';
         } catch (err) {
             setError('Invalid username or password.');
         }
@@ -35,6 +32,8 @@ const LoginPage = () => {
                             <input
                                 type="text"
                                 id="username"
+                                name="username" // Added name attribute
+                                autoComplete="username" // Added autocomplete attribute
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                                 required
@@ -45,6 +44,8 @@ const LoginPage = () => {
                             <input
                                 type="password"
                                 id="password"
+                                name="password" // Added name attribute
+                                autoComplete="current-password" // Added autocomplete attribute
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required

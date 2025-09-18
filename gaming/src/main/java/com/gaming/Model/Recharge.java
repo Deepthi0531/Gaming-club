@@ -1,41 +1,39 @@
 package com.gaming.Model;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.bson.types.ObjectId;
-import java.util.Date;
+import java.time.LocalDateTime; // <-- Make sure to import this
 
 @Document(collection = "recharges")
 public class Recharge {
 
     @Id
     private String id;
-
-    private ObjectId memberId;
-
     private double amount;
+    
+    // --- ADD THESE TWO FIELDS ---
+    private String memberId;
+    private LocalDateTime timestamp;
 
-    private Date dateTime;
-
-    // Constructors
-    public Recharge() {
-        this.dateTime = new Date();  // default to now
-    }
-
-    public Recharge(ObjectId memberId, double amount) {
-        this.memberId = memberId;
-        this.amount = amount;
-        this.dateTime = new Date();
-    }
-
-    // Getters and Setters
+    // --- Getters and setters ---
     public String getId() { return id; }
-
-    public ObjectId getMemberId() { return memberId; }
-    public void setMemberId(ObjectId memberId) { this.memberId = memberId; }
-
     public double getAmount() { return amount; }
     public void setAmount(double amount) { this.amount = amount; }
+    
+    // --- ADD THESE METHODS ---
+    public String getMemberId() {
+        return memberId;
+    }
 
-    public Date getDateTime() { return dateTime; }
-    public void setDateTime(Date dateTime) { this.dateTime = dateTime; }
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
 }

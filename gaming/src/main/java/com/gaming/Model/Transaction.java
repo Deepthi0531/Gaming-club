@@ -1,47 +1,33 @@
 package com.gaming.Model;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.bson.types.ObjectId;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Document(collection = "transactions")
 public class Transaction {
 
     @Id
     private String id;
-
-    private ObjectId memberId;
-
-    private ObjectId gameId;
-
     private double amount;
+    
+    // --- ADD THESE FIELDS ---
+    private String memberId;
+    private String gameId;
+    private LocalDateTime timestamp;
 
-    private Date dateTime;
-
-    // Constructors
-    public Transaction() {
-        this.dateTime = new Date();
-    }
-
-    public Transaction(ObjectId memberId, ObjectId gameId, double amount) {
-        this.memberId = memberId;
-        this.gameId = gameId;
-        this.amount = amount;
-        this.dateTime = new Date();
-    }
-
-    // Getters and setters
+    // --- Getters and setters ---
     public String getId() { return id; }
-
-    public ObjectId getMemberId() { return memberId; }
-    public void setMemberId(ObjectId memberId) { this.memberId = memberId; }
-
-    public ObjectId getGameId() { return gameId; }
-    public void setGameId(ObjectId gameId) { this.gameId = gameId; }
-
     public double getAmount() { return amount; }
     public void setAmount(double amount) { this.amount = amount; }
+    
+    // --- ADD THESE METHODS ---
+    public String getMemberId() { return memberId; }
+    public void setMemberId(String memberId) { this.memberId = memberId; }
 
-    public Date getDateTime() { return dateTime; }
-    public void setDateTime(Date dateTime) { this.dateTime = dateTime; }
+    public String getGameId() { return gameId; }
+    public void setGameId(String gameId) { this.gameId = gameId; }
+
+    public LocalDateTime getTimestamp() { return timestamp; }
+    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
 }

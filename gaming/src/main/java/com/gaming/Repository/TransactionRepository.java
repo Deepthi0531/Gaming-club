@@ -1,9 +1,13 @@
 package com.gaming.Repository;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
-import com.gaming.Model.Transaction;
 
-@Repository
+import com.gaming.Model.Transaction;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import java.util.List;
+
 public interface TransactionRepository extends MongoRepository<Transaction, String> {
-    // Additional query methods if needed
+
+    // This method finds all transactions for a given memberId,
+    // sorted with the most recent first.
+    List<Transaction> findByMemberIdOrderByTimestampDesc(String memberId);
+
 }

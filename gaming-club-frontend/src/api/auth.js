@@ -1,21 +1,21 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:8080/api/admin';
+import apiClient from './apiConfig';
 
 const login = (username, password) => {
-    return axios.post(`${API_URL}/login`, { username, password });
+    return apiClient.post('/admin_users/login', { username, password });
 };
 
 const signup = (userData) => {
-    return axios.post(`${API_URL}/register`, userData);
+    return apiClient.post('/admin_users/register', userData);
 };
 
 const logout = () => {
     localStorage.removeItem('user');
 };
 
-export default {
+const authService = {
     login,
-    signup, 
+    signup,
     logout,
 };
+
+export default authService;

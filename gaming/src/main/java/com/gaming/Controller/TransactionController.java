@@ -7,6 +7,7 @@ import com.gaming.Repository.TransactionRepository;
 
 @RestController
 @RequestMapping("/api/transactions")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TransactionController {
 
     @Autowired

@@ -1,36 +1,29 @@
 package com.gaming.Model;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-//public class Game extends RuntimeException {
-//    public Game(String message) {
-//        super(message);
-//    }
-//}
-
 
 @Document(collection = "games")
 public class Game {
 
     @Id
     private String id;
-
     private String name;
-
     private double price;
-
     private String description;
+    private int minPlayers;
+    private boolean multipleAllowed;
 
-    // Constructors
     public Game() {}
 
-    public Game(String name, double price, String description) {
+    public Game(String name, double price, String description, int minPlayers, boolean multipleAllowed) {
         this.name = name;
         this.price = price;
         this.description = description;
+        this.minPlayers = minPlayers;
+        this.multipleAllowed = multipleAllowed;
     }
 
-    // Getters and Setters
     public String getId() { return id; }
 
     public String getName() { return name; }
@@ -41,4 +34,20 @@ public class Game {
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
+
+    public int getMinPlayers() {
+        return minPlayers;
+    }
+
+    public void setMinPlayers(int minPlayers) {
+        this.minPlayers = minPlayers;
+    }
+
+    public boolean isMultipleAllowed() {
+        return multipleAllowed;
+    }
+
+    public void setMultipleAllowed(boolean multipleAllowed) {
+        this.multipleAllowed = multipleAllowed;
+    }
 }

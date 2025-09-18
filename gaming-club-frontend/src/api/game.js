@@ -1,16 +1,16 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:8080/api/games';
+import apiClient from './apiConfig';
 
 const addGame = (gameData) => {
-    return axios.post(API_URL, gameData);
+    return apiClient.post('/games', gameData);
 };
 
 const getAllGames = () => {
-    return axios.get(API_URL);
+    return apiClient.get('/games');
 };
 
-export default {
+const gameService = {
     addGame,
     getAllGames,
 };
+
+export default gameService;

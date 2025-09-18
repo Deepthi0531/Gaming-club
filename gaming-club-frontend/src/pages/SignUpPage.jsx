@@ -8,6 +8,7 @@ const SignUpPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [phone, setPhone] = useState('');
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
@@ -17,7 +18,6 @@ const SignUpPage = () => {
         setError('');
         setSuccessMessage('');
 
-        // Client-side validation
         if (password !== confirmPassword) {
             setError('Passwords do not match.');
             return;
@@ -28,14 +28,11 @@ const SignUpPage = () => {
         }
 
         try {
-            const response = await authApi.signup({ username, email, password });
+            const response = await authApi.signup({ username, email, password, phone });
             setSuccessMessage(response.data.message || 'Registration successful! Redirecting to login...');
-
-            // Redirect to login page after 2 seconds
             setTimeout(() => {
                 navigate('/login');
             }, 2000);
-
         } catch (err) {
             setError(err.response?.data?.message || 'Registration failed. Please try again.');
         }
@@ -55,6 +52,8 @@ const SignUpPage = () => {
                             <input
                                 type="text"
                                 id="username"
+                                name="username" // Added name attribute
+                                autoComplete="username" // Added autocomplete attribute
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                                 required
@@ -63,8 +62,10 @@ const SignUpPage = () => {
                          <div className="form-group">
                             <label htmlFor="email">Email</label>
                             <input
-                                type="text" // Can be type="email" for browser validation
+                                type="email"
                                 id="email"
+                                name="email" // Added name attribute
+                                autoComplete="email" // Added autocomplete attribute
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
@@ -75,6 +76,8 @@ const SignUpPage = () => {
                             <input
                                 type="password"
                                 id="password"
+                                name="password" // Added name attribute
+                                autoComplete="new-password" // Added autocomplete attribute
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
@@ -85,15 +88,27 @@ const SignUpPage = () => {
                             <input
                                 type="password"
                                 id="confirmPassword"
+                                name="confirmPassword" // Added name attribute
+                                autoComplete="new-password" // Added autocomplete attribute
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 required
                             />
                         </div>
-
+                        <div className="form-group">
+                            <label htmlFor="phone">Phone</label>
+                            <input
+                                type="text"
+                                id="phone"
+                                name="phone" // Added name attribute
+                                autoComplete="tel" // Added autocomplete attribute
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                required
+                            />
+                        </div>
                         {error && <p style={{ color: 'red' }}>{error}</p>}
                         {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
-
                         <button type="submit">Sign Up</button>
                     </form>
                     <p style={{ marginTop: '20px' }}>

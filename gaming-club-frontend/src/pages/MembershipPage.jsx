@@ -8,19 +8,27 @@ const MembershipPage = () => {
     const [phone, setPhone] = useState('');
     const [membershipFee, setMembershipFee] = useState('');
     const [message, setMessage] = useState('');
+    const [isError, setIsError] = useState(false); // Optional: for styling errors vs success
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage('');
+        setIsError(false);
         try {
-            await membershipApi.createMembership({ name, phone, initialDeposit: membershipFee });
+            // The frontend sends an object with `initialDeposit`
+            const memberData = { name, phone, initialDeposit: membershipFee };
+            await membershipApi.createMembership(memberData);
+            
             setMessage(`Membership created successfully for ${name}!`);
+            setIsError(false);
             // Clear form
             setName('');
             setPhone('');
             setMembershipFee('');
         } catch (error) {
-            setMessage('Failed to create membership. Please try again.');
+            // --- FIXED: Display the specific error message from the backend ---
+            setMessage(error.response?.data?.message || 'Failed to create membership. Please try again.');
+            setIsError(true);
         }
     };
 
@@ -40,10 +48,13 @@ const MembershipPage = () => {
                             <input type="text" id="phone" value={phone} onChange={e => setPhone(e.target.value)} required />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="fee">Membership Fee</label>
+                            <label htmlFor="fee">Membership Fee (₹)</label>
                             <input type="number" id="fee" value={membershipFee} onChange={e => setMembershipFee(e.target.value)} required />
                         </div>
-                        {message && <p>{message}</p>}
+                        
+                        {/* Display message with conditional styling */}
+                        {message && <p style={{ color: isError ? 'red' : 'green' }}>{message}</p>}
+                        
                         <button type="submit">Create Membership</button>
                     </form>
                 </div>

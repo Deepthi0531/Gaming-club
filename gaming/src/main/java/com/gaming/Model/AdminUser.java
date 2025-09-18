@@ -10,9 +10,9 @@ public class AdminUser {
     private String id;
 
     private String username;
-
+    private String email;
     private String password;  // Store hashed password in production
-
+    private String phone;
     public AdminUser() {}
 
     public AdminUser(String username, String password) {
@@ -28,4 +28,15 @@ public class AdminUser {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+
+     public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 }
