@@ -1,38 +1,205 @@
-.App {
-  text-align: center;
+/* General Styles */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.form-container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+h2 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #1a237e;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Header & Footer */
+.app-header, .app-footer {
+    background-color: #1a237e;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.app-footer {
+    font-size: 14px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+}
+
+.nav-links a.active {
+    text-decoration: underline;
+}
+
+.user-info button {
+    margin-left: 20px;
+    background-color: #ff4081;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="number"],
+.form-group input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Important */
+}
+
+.form-group.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.form-group.checkbox-group input {
+   width: auto;
+   margin-left: 10px;
+}
+
+
+button {
+    background-color: #3f51b5;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #303f9f;
+}
+
+/* Member Page & Tables */
+.member-details {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+.member-details p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+.tab-nav {
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 20px;
+}
+.tab-nav button {
+    width: auto;
+    background: none;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #555;
+}
+.tab-nav button.active {
+    border-bottom: 3px solid #3f51b5;
+    color: #3f51b5;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:hover {
+    background-color: #f5f5f5;
+}
+table button {
+    width: auto;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+/* Collections Page */
+.collections-search {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.collections-search input {
+     padding: 12px;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+}
+.collections-search button {
+    width: auto;
+}
+.collection-table {
+    margin-top: 20px;
+}
+.total-row {
+    font-weight: bold;
+    background-color: #e8eaf6;
 }
