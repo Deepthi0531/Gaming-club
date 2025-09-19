@@ -107,16 +107,20 @@ const MemberPage = () => {
                             </table>
                         )}
                         {activeTab === 'played' && (
-                             <table>
+                            <table>
                                 <thead><tr><th>Date/Time</th><th>Game</th><th>Amount</th></tr></thead>
                                 <tbody>
-                                    {playedGames.map(t => (
-                                        <tr key={t.id}>
-                                            <td>{new Date(t.timestamp).toLocaleString()}</td>
-                                            <td>{t.gameName}</td>
-                                            <td>₹{t.amount}</td>
-                                        </tr>
-                                    ))}
+                                    {playedGames.map(t => {
+                                        // Find the game name from the games array using gameId
+                                        const game = games.find(g => g.id === t.gameId);
+                                        return (
+                                            <tr key={t.id}>
+                                                <td>{new Date(t.timestamp).toLocaleString()}</td>
+                                                <td>{game ? game.name : t.gameId}</td>
+                                                <td>₹{t.amount}</td>
+                                            </tr>
+                                        );
+                                    })}
                                 </tbody>
                             </table>
                         )}
