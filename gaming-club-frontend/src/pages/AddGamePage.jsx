@@ -18,7 +18,6 @@ const AddGamePage = () => {
         try {
             await gameApi.addGame(gameData);
             setMessage(`Game "${gameName}" added successfully!`);
-            // Reset form
             setGameName(''); setPrice(''); setDescription(''); setMinPlayers(1); setMultipleAllowed(false);
         } catch (error) {
             setMessage('Failed to add game. Please try again.');

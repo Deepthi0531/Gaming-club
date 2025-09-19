@@ -9,19 +9,14 @@ public class CollectionRecord {
 
     @Id
     private String id;
-
     private Date date;
-
     private double amount;
-
     public CollectionRecord() {}
-
     public CollectionRecord(Date date, double amount) {
         this.date = date;
         this.amount = amount;
     }
 
-    // Getters and setters
     public String getId() { return id; }
 
     public Date getDate() { return date; }

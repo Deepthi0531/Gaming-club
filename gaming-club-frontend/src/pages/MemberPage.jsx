@@ -51,7 +51,6 @@ const MemberPage = () => {
             try {
                 await memberApi.playGame(phone, gameId);
                 alert("Game played successfully!");
-                // Refresh member details to show updated balance
                 fetchMemberDetails();
             } catch (error) {
                 alert("Failed to play game. Insufficient balance or server error.");

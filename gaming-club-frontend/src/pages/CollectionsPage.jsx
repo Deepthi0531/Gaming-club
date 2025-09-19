@@ -54,12 +54,12 @@ const CollectionsPage = () => {
                     </form>
                     {error && <p style={{ color: 'red' }}>{error}</p>}
                     <div className="collection-table">
-                        <h3>Recharge Collection on {date}</h3>
+                        <h3>Amount Collection on {date}</h3>
                         <table>
                             <thead>
                                 <tr>
                                     <th>Member</th>
-                                    <th>Recharge</th>
+                                    <th>Amount</th>
                                 </tr>
                             </thead>
                             <tbody>

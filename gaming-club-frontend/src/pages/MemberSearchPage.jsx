@@ -7,7 +7,7 @@ import memberApi from '../api/member';
 const MemberSearchPage = () => {
     const [phone, setPhone] = useState('');
     const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(false); // 1. Added loading state
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSearch = async (e) => {
@@ -19,13 +19,9 @@ const MemberSearchPage = () => {
         await memberApi.findMemberByPhone(phone);
         navigate(`/member/${phone}`);
     } catch (err) {
-        // --- FIXED: Display a more accurate error ---
         if (err.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
             setError(`Error: The server responded with status ${err.response.status}.`);
         } else {
-            // Something happened in setting up the request that triggered an Error
             setError('An unexpected error occurred. Please try again.');
         }
     } finally {
@@ -47,11 +43,11 @@ const MemberSearchPage = () => {
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
                                 required
-                                disabled={isLoading} // 5. Disable input while loading
+                                disabled={isLoading}
                             />
                         </div>
                         <button type="submit" style={{ width: 'auto' }} disabled={isLoading}>
-                            {/* 6. Change button text while loading */}
+                            {}
                             {isLoading ? 'Searching...' : 'Search'}
                         </button>
                     </form>

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CollectionRepository extends MongoRepository<CollectionRecord, String> {
-    // Custom queries if needed
+
 }

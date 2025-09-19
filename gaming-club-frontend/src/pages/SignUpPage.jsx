@@ -52,8 +52,8 @@ const SignUpPage = () => {
                             <input
                                 type="text"
                                 id="username"
-                                name="username" // Added name attribute
-                                autoComplete="username" // Added autocomplete attribute
+                                name="username"
+                                autoComplete="username"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                                 required
@@ -64,8 +64,8 @@ const SignUpPage = () => {
                             <input
                                 type="email"
                                 id="email"
-                                name="email" // Added name attribute
-                                autoComplete="email" // Added autocomplete attribute
+                                name="email"
+                                autoComplete="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
@@ -76,8 +76,8 @@ const SignUpPage = () => {
                             <input
                                 type="password"
                                 id="password"
-                                name="password" // Added name attribute
-                                autoComplete="new-password" // Added autocomplete attribute
+                                name="password"
+                                autoComplete="new-password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
@@ -88,8 +88,8 @@ const SignUpPage = () => {
                             <input
                                 type="password"
                                 id="confirmPassword"
-                                name="confirmPassword" // Added name attribute
-                                autoComplete="new-password" // Added autocomplete attribute
+                                name="confirmPassword"
+                                autoComplete="new-password"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 required
@@ -100,8 +100,8 @@ const SignUpPage = () => {
                             <input
                                 type="text"
                                 id="phone"
-                                name="phone" // Added name attribute
-                                autoComplete="tel" // Added autocomplete attribute
+                                name="phone"
+                                autoComplete="tel"
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
                                 required

@@ -8,10 +8,9 @@ public class AdminUser {
 
     @Id
     private String id;
-
     private String username;
     private String email;
-    private String password;  // Store hashed password in production
+    private String password;
     private String phone;
     public AdminUser() {}
 

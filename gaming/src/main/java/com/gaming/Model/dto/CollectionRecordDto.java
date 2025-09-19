@@ -9,8 +9,6 @@ public class CollectionRecordDto {
         this.memberName = memberName;
         this.amount = amount;
     }
-
-    // Getters and Setters
     public String getMemberName() { return memberName; }
     public void setMemberName(String memberName) { this.memberName = memberName; }
     public double getAmount() { return amount; }

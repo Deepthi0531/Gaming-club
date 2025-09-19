@@ -37,9 +37,8 @@ h2 {
     color: #1a237e;
 }
 
-/* Header & Footer */
 .app-header, .app-footer {
-    background-color: #1a237e;
+    background-color: rgb(23, 139, 150);
     color: white;
     padding: 15px 30px;
     text-align: center;
@@ -73,7 +72,7 @@ h2 {
 
 .user-info button {
     margin-left: 20px;
-    background-color: #ff4081;
+    background-color: #a8ca49;
 }
 
 /* Forms */
@@ -96,7 +95,7 @@ h2 {
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Important */
+    box-sizing: border-box;
 }
 
 .form-group.checkbox-group {
@@ -127,7 +126,6 @@ button:hover {
     background-color: #303f9f;
 }
 
-/* Member Page & Tables */
 .member-details {
     background: #fff;
     padding: 20px;
@@ -155,7 +153,7 @@ button:hover {
     color: #555;
 }
 .tab-nav button.active {
-    border-bottom: 3px solid #3f51b5;
+    border-bottom: 3px solid darkred;
     color: #3f51b5;
     font-weight: bold;
 }

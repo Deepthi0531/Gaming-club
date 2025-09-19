@@ -10,7 +10,6 @@ import CollectionsPage from './pages/CollectionsPage';
 import RechargePage from './pages/RechargePage';
 
 const AppRoutes = () => {
-    // A simple check for a logged-in user.
     const isAuth = !!localStorage.getItem('user');
 
     return (

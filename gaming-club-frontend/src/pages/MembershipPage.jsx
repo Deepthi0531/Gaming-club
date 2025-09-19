@@ -47,7 +47,7 @@ const MembershipPage = () => {
                 <div className="form-container">
                     <h2>CREATE MEMBERSHIP</h2>
                     <form onSubmit={handleSubmit}>
-                        {/* ... form groups for name, phone, fee ... */}
+                        {}
                         <div className="form-group">
                             <label htmlFor="name">Name</label>
                             <input type="text" id="name" name="name" value={name} onChange={e => setName(e.target.value)} required />

@@ -28,7 +28,6 @@ public class AdminUserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody AdminUser signUpRequest) {
-        // --- FIXED: Implemented logic to check for existing username ---
         if (adminUserRepository.findByUsername(signUpRequest.getUsername()).isPresent()) {
             return ResponseEntity
                     .status(HttpStatus.CONFLICT) 
@@ -55,12 +54,10 @@ public class AdminUserController {
 
         AdminUser user = userOptional.get();
 
-        // --- FIXED: Use the encoder to check if passwords match ---
+      
         if (passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
-            // Passwords match, login successful
-            return ResponseEntity.ok(user); // Return user data on successful login
+            return ResponseEntity.ok(user);
         } else {
-            // Passwords do not match
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "Invalid username or password."));
         }
     }

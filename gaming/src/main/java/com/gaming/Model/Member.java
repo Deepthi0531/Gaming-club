@@ -16,9 +16,8 @@ public class Member {
     @Indexed(unique = true)
     private String phone;
     
-    private LocalDateTime memberSince; // <-- FIXED: Added the missing field declaration
+    private LocalDateTime memberSince; 
 
-    // Constructors
     public Member() {}
 
     public Member(String name, String phone, double balance) {
@@ -27,7 +26,6 @@ public class Member {
         this.balance = balance;
     }
 
-    // Getters and setters
     public String getId() { return id; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

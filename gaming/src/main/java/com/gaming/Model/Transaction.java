@@ -11,11 +11,9 @@ public class Transaction {
     private String id;
     private double amount;
     private String memberId;
-    private String gameId;
-    
+    private String gameId;    
     private Instant timestamp;
 
-    // Getters and setters
     public String getId() { return id; }
     public double getAmount() { return amount; }
     public void setAmount(double amount) { this.amount = amount; }

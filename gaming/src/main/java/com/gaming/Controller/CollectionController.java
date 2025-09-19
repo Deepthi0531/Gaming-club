@@ -2,11 +2,9 @@ package com.gaming.Controller;
 
 import com.gaming.Model.Member;
 import com.gaming.Model.Recharge;
-import com.gaming.Model.Transaction;
-import com.gaming.Model.dto.CollectionRecordDto; // Use the DTO
+import com.gaming.Model.dto.CollectionRecordDto;
 import com.gaming.Repository.MemberRepository;
 import com.gaming.Repository.RechargeRepository;
-import com.gaming.Repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
+//import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,9 +28,6 @@ public class CollectionController {
     private RechargeRepository rechargeRepository;
     
     @Autowired
-    private TransactionRepository transactionRepository;
-    
-    @Autowired
     private MemberRepository memberRepository;
 
     @GetMapping
@@ -44,11 +39,9 @@ public class CollectionController {
         Instant endInstant = date.plusDays(1).atStartOfDay(systemTimeZone).toInstant();
 
         List<Recharge> recharges = rechargeRepository.findByTimestampBetween(startInstant, endInstant);
-        List<Transaction> transactions = transactionRepository.findByTimestampBetween(startInstant, endInstant);
 
         double rechargeTotal = recharges.stream().mapToDouble(Recharge::getAmount).sum();
-        double transactionTotal = transactions.stream().mapToDouble(Transaction::getAmount).sum();
-        double grandTotal = rechargeTotal + transactionTotal;
+        double grandTotal = rechargeTotal ;
 
         List<String> memberIds = recharges.stream().map(Recharge::getMemberId).distinct().collect(Collectors.toList());
         Map<String, String> memberIdToNameMap = memberRepository.findAllById(memberIds).stream()
