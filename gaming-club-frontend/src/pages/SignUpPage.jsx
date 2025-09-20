@@ -39,7 +39,7 @@ const SignUpPage = () => {
     };
 
     return (
-        <div className="page-container">
+        <div className="page-container login-page-background">
             <header className="app-header" style={{ justifyContent: 'center' }}>
                  <h1>GAMING CLUB APP</h1>
             </header>
@@ -62,7 +62,7 @@ const SignUpPage = () => {
                          <div className="form-group">
                             <label htmlFor="email">Email</label>
                             <input
-                                type="email"
+                                type="text"
                                 id="email"
                                 name="email"
                                 autoComplete="email"

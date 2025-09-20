@@ -34,11 +34,11 @@ h2 {
     margin-top: 0;
     margin-bottom: 30px;
     font-size: 24px;
-    color: #1a237e;
+    color: #3d3702;
 }
 
 .app-header, .app-footer {
-    background-color: rgb(23, 139, 150);
+    background-color: rgb(241, 11, 118);
     color: white;
     padding: 15px 30px;
     text-align: center;
@@ -110,7 +110,7 @@ h2 {
 
 
 button {
-    background-color: #3f51b5;
+    background-color: #7f0505;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -200,4 +200,14 @@ table button {
 .total-row {
     font-weight: bold;
     background-color: #e8eaf6;
+}
+.login-page-background {
+  background-image: url('/public/favicon.ico');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.login-page-background .form-container {
+  background-color: rgba(255, 255, 255, 0.9);
 }

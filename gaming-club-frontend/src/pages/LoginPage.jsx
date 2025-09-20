@@ -20,7 +20,7 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="page-container">
+        <div className="page-container login-page-background">
             <header className="app-header" style={{ justifyContent: 'center' }}>
                  <h1>GAMING CLUB APP</h1>
             </header>
