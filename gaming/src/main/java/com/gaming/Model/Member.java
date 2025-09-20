@@ -3,7 +3,7 @@ package com.gaming.Model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Document(collection = "members")
 public class Member {
@@ -16,7 +16,7 @@ public class Member {
     @Indexed(unique = true)
     private String phone;
     
-    private LocalDateTime memberSince; 
+    private Instant memberSince; 
 
     public Member() {}
 
@@ -34,10 +34,10 @@ public class Member {
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
     
-    public LocalDateTime getMemberSince() {
+    public Instant getMemberSince() {
         return memberSince;
     }
-    public void setMemberSince(LocalDateTime memberSince) {
+    public void setMemberSince(Instant memberSince) {
         this.memberSince = memberSince;
     }
 }

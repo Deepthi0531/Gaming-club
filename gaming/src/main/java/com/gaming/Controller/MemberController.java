@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -65,7 +64,7 @@ public class MemberController {
         newMember.setName(request.getName());
         newMember.setPhone(request.getPhone());
         newMember.setBalance(request.getInitialDeposit());
-        newMember.setMemberSince(LocalDateTime.now());
+        newMember.setMemberSince(Instant.now());
         Member savedMember = memberRepository.save(newMember);
 
         Recharge initialRecharge = new Recharge();
